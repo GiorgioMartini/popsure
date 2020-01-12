@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 
-function BooleanQuestion ({question, next, setAnswer, actionType, value}) {
+function NumericQuestion ({question, next, setAnswer, actionType, value}) {
   const [input, setInput] = useState('')
   function handleChange({target}) {
-    setInput(target.value)
+    setInput(parseInt(target.value))
     setAnswer({
       type: actionType,
-      input: target.value,
+      input: parseInt(target.value),
     })
-    localStorage.setItem(`popsure_${value}`, event.target.value);
+    localStorage.setItem(`popsure_${value}`, parseInt(event.target.value));
   }
 
   const inputValue = localStorage.getItem(`popsure_${value}`) ? localStorage.getItem(`popsure_${value}`) : input
@@ -18,15 +18,14 @@ function BooleanQuestion ({question, next, setAnswer, actionType, value}) {
     return (
       <div className="shadow-5 pa3 br2">
         <p className='f3'>{question}</p>
-        <input checked={inputValue === 'yes'} type="radio" onChange={(e) => handleChange(e)} value="yes" /> Yes<br/>
-        <input checked={inputValue === 'no'} className='mb4' onChange={(e) => handleChange(e)} type="radio" value="no" /> No<br/>
+        <input type='number' onChange={e => handleChange(e)}/>
         <button className='bn bg-silver pa2 br2 white pointer mr3' onClick={() => history.goBack()}>Back</button>
         <Link className='bg-light-purple pa2 br2 white no-underline pointer' onClick={() => setAnswer({
           type: actionType,
-          input: input === 'yes' ? true : false,
+          input: input,
           })} to={next} >Next</Link>
       </div>
     );
 }
 
-export default BooleanQuestion;
+export default NumericQuestion;
