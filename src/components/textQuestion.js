@@ -25,7 +25,7 @@ function TextQuestion ({question, next, setAnswer, actionType, state, value }) {
   
   return (
     <div className="shadow-5 pa3 br2">
-        <p className='f3'>{question}</p>
+        <p className='f3 question'>{question}</p>
         <input value={inputValue} className='w-100 pa2 mb3' onChange={e => handleChange(e)} type="text"/>
         <button className={`bn bg-silver pa2 br2 white pointer mr3 ${next === '/address' ? 'dn' : ''}`} onClick={() => history.goBack()}>Back</button>
         <Link className='bg-light-purple pa2 br2 white no-underline pointer' onClick={() => setAnswer({
