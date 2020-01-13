@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
-import {Link, useHistory, Redirect} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 function TextQuestion ({question, next, setAnswer, actionType, state, value }) {
-  if (next === '/email' && state.hasChildren === false) {
-    return <Redirect to='/email' />
-  }
   
   const [input, setInput] = useState(state[value]
     ? state[value]
